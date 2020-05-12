@@ -10,7 +10,7 @@ export class AppController {
 
   @Get()
   getHello(
-    @Param("name", NamePipe) name: string
+    @Param("name", HostPipe) name: string
   ): string {
     return this.appService.getHello(name);
   }

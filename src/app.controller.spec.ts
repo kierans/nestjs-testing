@@ -21,6 +21,17 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
+    /*
+     * The problem:
+     *
+     * When testing the controller with a Pipe, if the Pipe is a singleton instance
+     * Nest constructs the controller instance and this test will pass.
+     *
+     * If the Pipe is Request scoped, the controller is not instantiated correctly
+     * (this.appService will be undefined) and this test will fail.
+     *
+     * To see in action, in AppController swap NamePipe for HostPipe
+     */
     it('should return hello message', () => {
       assertThat(appController.getHello("Bruce Wayne"), is('Hello Bruce Wayne!'));
     });
